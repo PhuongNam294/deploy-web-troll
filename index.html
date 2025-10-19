@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="vi">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>⚠️ PRANK WARNING</title>
+    <style>
+        :root {
+            --red: #d80e0e;
+            --yellow: #ffcc00;
+            --black: #000;
+            --white: #fff;
+        }
+
+        html,
+        body {
+            margin: 0;
+            height: 100%;
+            overflow: hidden;
+            font-family: Inter, system-ui, Segoe UI, Roboto, Arial;
+            animation: bgFlash 2.5s infinite ease-in-out;
+        }
+
+        @keyframes bgFlash {
+            0% {
+                background: var(--red);
+            }
+
+            25% {
+                background: var(--yellow);
+            }
+
+            50% {
+                background: var(--black);
+            }
+
+            75% {
+                background: var(--red);
+            }
+
+            100% {
+                background: var(--yellow);
+            }
+        }
+
+        .container {
+            position: relative;
+            height: 100%;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* Tam giác */
+        .sign {
+            --size: 220px;
+            position: relative;
+            width: var(--size);
+            height: var(--size);
+            animation: pulse 1.8s infinite ease-in-out;
+        }
+
+        .sign::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            clip-path: polygon(50% 2%, 2% 98%, 98% 98%);
+            background: var(--red);
+        }
+
+        .sign::after {
+            content: "";
+            position: absolute;
+            inset: 10%;
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+            background: linear-gradient(180deg, #fff066 0%, #ffb700 100%);
+        }
+
+        .mark {
+            position: absolute;
+            top: 38%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: calc(var(--size)*0.45);
+            font-weight: 900;
+            color: #111;
+            text-shadow: 0 2px 2px rgba(255, 255, 255, .6);
+            z-index: 2;
+        }
+
+        .text {
+            position: absolute;
+            bottom: 18%;
+            left: 50%;
+            transform: translateX(-50%);
+            font-weight: 900;
+            font-size: calc(var(--size)*0.09);
+            color: #111;
+            text-shadow: 0 2px 2px rgba(255, 255, 255, .6);
+            z-index: 2;
+        }
+
+        .apex {
+            position: absolute;
+            left: 50%;
+            top: 6%;
+            transform: translateX(-50%);
+            width: 44%;
+            height: 18%;
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+            background: linear-gradient(180deg, rgba(255, 255, 255, .9), rgba(255, 255, 255, 0));
+            mix-blend-mode: overlay;
+            animation: flash 1.8s infinite ease-in-out;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                filter: drop-shadow(0 0 10px rgba(255, 255, 255, .2));
+            }
+
+            50% {
+                filter: drop-shadow(0 0 40px rgba(255, 255, 255, .9));
+            }
+        }
+
+        @keyframes flash {
+
+            0%,
+            100% {
+                opacity: .8;
+            }
+
+            50% {
+                opacity: 1;
+            }
+        }
+
+        h1 {
+            margin-top: 20px;
+            font-size: 28px;
+            text-shadow: 0 2px 6px rgba(0, 0, 0, .5);
+        }
+
+        .note {
+            display: inline-block;
+            margin-top: 8px;
+            padding: 8px 14px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 999px;
+            font-weight: 700;
+            color: #fff;
+            animation: noteFlash 2s infinite ease-in-out;
+        }
+
+        @keyframes noteFlash {
+
+            0%,
+            100% {
+                background: rgba(255, 255, 255, 0.25);
+            }
+
+            50% {
+                background: rgba(255, 255, 255, 0.45);
+            }
+        }
+
+        p {
+            max-width: 600px;
+            margin: 10px auto 0;
+            font-size: 16px;
+            color: #fefefe;
+        }
+
+        button {
+            margin-top: 16px;
+            padding: 10px 20px;
+            border: 0;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .ok {
+            background: #0ea5a5;
+            color: #fff;
+        }
+
+        .info {
+            background: transparent;
+            color: #fff;
+            border: 2px solid #fff;
+        }
+
+        footer {
+            margin-top: 18px;
+            font-size: 13px;
+            opacity: .8
+        }
+
+        @media(max-width:768px) {
+            .sign {
+                --size: 170px;
+            }
+
+            h1 {
+                font-size: 22px;
+            }
+        }
+
+        @media(max-width:480px) {
+            .sign {
+                --size: 130px;
+            }
+
+            h1 {
+                font-size: 18px;
+            }
+
+            p {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="sign">
+            <div class="apex"></div>
+            <div class="mark">!</div>
+            <div class="text">CẢNH BÁO</div>
+        </div>
+        <h1>⚠️ Hệ thống phát hiện hoạt động bất thường</h1>
+        <p>Bạn soi facebook tôi và đã bị tôi hack vui lòng đừng soi nữa!<br>
+            Không yêu cầu mật khẩu, OTP hoặc thông tin nhạy cảm nào.</p>
+        <button class="ok" id="okBtn">Tôi hiểu 😅</button>
+        <button class="info" id="tipsBtn">Mẹo bảo mật</button>
+        <footer>© 2025 | Hoàng Phương Nam</footer>
+    </div>
+    <script>
+        document.getElementById('okBtn').onclick = () => alert("Chúc mừng nghen tạo nick mới đi 😄");
+        document.getElementById('tipsBtn').onclick = () => window.open(
+            'https://www.ncsc.gov.uk/collection/top-tips-for-staying-secure-online', '_blank');
+    </script>
+</body>
+
+</html>
