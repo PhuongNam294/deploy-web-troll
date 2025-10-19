@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
     <title>⚠️ PRANK WARNING</title>
     <style>
         :root {
@@ -13,6 +13,7 @@
             --white: #fff;
         }
 
+        /* Toàn trang nền nhấp nháy */
         html,
         body {
             margin: 0;
@@ -20,6 +21,9 @@
             overflow: hidden;
             font-family: Inter, system-ui, Segoe UI, Roboto, Arial;
             animation: bgFlash 2.5s infinite ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         @keyframes bgFlash {
@@ -45,25 +49,25 @@
         }
 
         .container {
-            position: relative;
-            height: 100%;
             width: 100%;
+            max-width: 900px;
+            padding: 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            color: var(--white);
             text-align: center;
-            padding: 20px;
+            color: var(--white);
         }
 
         /* Tam giác */
         .sign {
-            --size: 220px;
             position: relative;
-            width: var(--size);
-            height: var(--size);
+            width: min(60vw, 240px);
+            /* tự co theo chiều rộng màn hình */
+            aspect-ratio: 1/1;
             animation: pulse 1.8s infinite ease-in-out;
+            margin-bottom: 10px;
         }
 
         .sign::before {
@@ -82,12 +86,26 @@
             background: linear-gradient(180deg, #fff066 0%, #ffb700 100%);
         }
 
+        .apex {
+            position: absolute;
+            left: 50%;
+            top: 6%;
+            transform: translateX(-50%);
+            width: 44%;
+            height: 18%;
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+            background: linear-gradient(180deg, rgba(255, 255, 255, .9), rgba(255, 255, 255, 0));
+            mix-blend-mode: overlay;
+            animation: flash 1.8s infinite ease-in-out;
+        }
+
         .mark {
             position: absolute;
             top: 38%;
             left: 50%;
             transform: translate(-50%, -50%);
-            font-size: calc(var(--size)*0.45);
+            font-size: clamp(40px, 18vw, 100px);
+            /* tự co theo màn hình */
             font-weight: 900;
             color: #111;
             text-shadow: 0 2px 2px rgba(255, 255, 255, .6);
@@ -100,23 +118,10 @@
             left: 50%;
             transform: translateX(-50%);
             font-weight: 900;
-            font-size: calc(var(--size)*0.09);
+            font-size: clamp(12px, 5vw, 28px);
             color: #111;
             text-shadow: 0 2px 2px rgba(255, 255, 255, .6);
             z-index: 2;
-        }
-
-        .apex {
-            position: absolute;
-            left: 50%;
-            top: 6%;
-            transform: translateX(-50%);
-            width: 44%;
-            height: 18%;
-            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-            background: linear-gradient(180deg, rgba(255, 255, 255, .9), rgba(255, 255, 255, 0));
-            mix-blend-mode: overlay;
-            animation: flash 1.8s infinite ease-in-out;
         }
 
         @keyframes pulse {
@@ -143,49 +148,29 @@
             }
         }
 
+        /* Nội dung */
         h1 {
-            margin-top: 20px;
-            font-size: 28px;
+            margin-top: 10px;
+            font-size: clamp(18px, 6vw, 28px);
             text-shadow: 0 2px 6px rgba(0, 0, 0, .5);
-        }
-
-        .note {
-            display: inline-block;
-            margin-top: 8px;
-            padding: 8px 14px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 999px;
-            font-weight: 700;
-            color: #fff;
-            animation: noteFlash 2s infinite ease-in-out;
-        }
-
-        @keyframes noteFlash {
-
-            0%,
-            100% {
-                background: rgba(255, 255, 255, 0.25);
-            }
-
-            50% {
-                background: rgba(255, 255, 255, 0.45);
-            }
         }
 
         p {
             max-width: 600px;
-            margin: 10px auto 0;
-            font-size: 16px;
+            margin: 8px auto 0;
+            font-size: clamp(13px, 4vw, 16px);
             color: #fefefe;
+            line-height: 1.4;
         }
 
         button {
-            margin-top: 16px;
+            margin-top: 14px;
             padding: 10px 20px;
             border: 0;
             border-radius: 8px;
             font-weight: 700;
             cursor: pointer;
+            font-size: clamp(13px, 4vw, 16px);
         }
 
         .ok {
@@ -200,32 +185,19 @@
         }
 
         footer {
-            margin-top: 18px;
-            font-size: 13px;
-            opacity: .8
+            margin-top: 14px;
+            font-size: clamp(11px, 3.5vw, 13px);
+            opacity: .8;
         }
 
-        @media(max-width:768px) {
+        /* Đảm bảo chữ không bị nhỏ trên mobile */
+        @media (max-height:500px) {
+            .container {
+                padding: 8px;
+            }
+
             .sign {
-                --size: 170px;
-            }
-
-            h1 {
-                font-size: 22px;
-            }
-        }
-
-        @media(max-width:480px) {
-            .sign {
-                --size: 130px;
-            }
-
-            h1 {
-                font-size: 18px;
-            }
-
-            p {
-                font-size: 14px;
+                width: min(70vw, 180px);
             }
         }
     </style>
@@ -239,14 +211,16 @@
             <div class="text">CẢNH BÁO</div>
         </div>
         <h1>⚠️ Hệ thống phát hiện hoạt động bất thường</h1>
-        <p>Bạn soi facebook tôi và đã bị tôi hack vui lòng đừng soi nữa!<br>
-            Không yêu cầu mật khẩu, OTP hoặc thông tin nhạy cảm nào.</p>
+        <p>Bạn soi Facebook tôi và đã bị tôi hack nick, tạo lại nick khác đi nha bạn.<br>Đừng lo, không yêu cầu mật khẩu
+            vì bạn có vào lại nick được đâu, OTP hay dữ liệu nào
+            cả!</p>
         <button class="ok" id="okBtn">Tôi hiểu 😅</button>
         <button class="info" id="tipsBtn">Mẹo bảo mật</button>
         <footer>© 2025 | Hoàng Phương Nam</footer>
     </div>
+
     <script>
-        document.getElementById('okBtn').onclick = () => alert("Chúc mừng nghen tạo nick mới đi 😄");
+        document.getElementById('okBtn').onclick = () => alert("Haha, tạo nick khác chơi đi! 😄");
         document.getElementById('tipsBtn').onclick = () => window.open(
             'https://www.ncsc.gov.uk/collection/top-tips-for-staying-secure-online', '_blank');
     </script>
